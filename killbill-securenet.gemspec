@@ -3,8 +3,8 @@ version = File.read(File.expand_path('../VERSION', __FILE__)).strip
 Gem::Specification.new do |s|
   s.name        = 'killbill-securenet'
   s.version     = version
-  s.summary     = 'Plugin to use Securenet as a gateway.'
-  s.description = 'Kill Bill payment plugin for Securenet.'
+  s.summary     = 'Plugin to use SecureNet as a gateway.'
+  s.description = 'Kill Bill payment plugin for SecureNet.'
 
   s.required_ruby_version = '>= 1.9.3'
 

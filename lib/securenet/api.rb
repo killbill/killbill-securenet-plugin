@@ -26,6 +26,8 @@ module Killbill #:nodoc:
         # Pass extra parameters for the gateway here
         options = {}
 
+        default_options(options, kb_payment_transaction_id)
+
         properties = merge_properties(properties, options)
         super(kb_account_id, kb_payment_id, kb_payment_transaction_id, kb_payment_method_id, amount, currency, properties, context)
       end
@@ -33,6 +35,8 @@ module Killbill #:nodoc:
       def capture_payment(kb_account_id, kb_payment_id, kb_payment_transaction_id, kb_payment_method_id, amount, currency, properties, context)
         # Pass extra parameters for the gateway here
         options = {}
+
+        default_options(options, kb_payment_transaction_id)
 
         properties = merge_properties(properties, options)
         super(kb_account_id, kb_payment_id, kb_payment_transaction_id, kb_payment_method_id, amount, currency, properties, context)
@@ -42,6 +46,8 @@ module Killbill #:nodoc:
         # Pass extra parameters for the gateway here
         options = {}
 
+        default_options(options, kb_payment_transaction_id)
+
         properties = merge_properties(properties, options)
         super(kb_account_id, kb_payment_id, kb_payment_transaction_id, kb_payment_method_id, amount, currency, properties, context)
       end
@@ -49,6 +55,8 @@ module Killbill #:nodoc:
       def void_payment(kb_account_id, kb_payment_id, kb_payment_transaction_id, kb_payment_method_id, properties, context)
         # Pass extra parameters for the gateway here
         options = {}
+
+        default_options(options, kb_payment_transaction_id)
 
         properties = merge_properties(properties, options)
         super(kb_account_id, kb_payment_id, kb_payment_transaction_id, kb_payment_method_id, properties, context)
@@ -58,6 +66,8 @@ module Killbill #:nodoc:
         # Pass extra parameters for the gateway here
         options = {}
 
+        default_options(options, kb_payment_transaction_id)
+
         properties = merge_properties(properties, options)
         super(kb_account_id, kb_payment_id, kb_payment_transaction_id, kb_payment_method_id, amount, currency, properties, context)
       end
@@ -65,6 +75,8 @@ module Killbill #:nodoc:
       def refund_payment(kb_account_id, kb_payment_id, kb_payment_transaction_id, kb_payment_method_id, amount, currency, properties, context)
         # Pass extra parameters for the gateway here
         options = {}
+
+        default_options(options, kb_payment_transaction_id)
 
         properties = merge_properties(properties, options)
         super(kb_account_id, kb_payment_id, kb_payment_transaction_id, kb_payment_method_id, amount, currency, properties, context)
@@ -160,6 +172,13 @@ module Killbill #:nodoc:
           # Set the response body
           # gw_notification.entity =
         end
+      end
+
+      private
+
+      def default_options(options, kb_payment_transaction_id)
+        # SecureNet limits it to 25 characters
+        options[:order_id] ||= Killbill::Plugin::ActiveMerchant::Utils.compact_uuid(kb_payment_transaction_id)
       end
     end
   end
