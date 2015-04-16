@@ -1,4 +1,6 @@
 :securenet:
+  :login: <%= ENV['LOGIN'] %>
+  :password: <%= ENV['PASSWORD'] %>
   :test: true
 
 :database:
