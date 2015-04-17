@@ -85,20 +85,3 @@ curl -v \
      }' \
      "http://127.0.0.1:8080/1.0/kb/accounts/2a55045a-ce1d-4344-942d-b825536328f9/paymentMethods?isDefault=true&pluginProperty=skip_gw=true"
 ```
-
-To trigger a payment:
-
-```
-curl -v \
-     -X POST \
-     -u admin:password \
-     -H 'X-Killbill-ApiKey: bob' \
-     -H 'X-Killbill-ApiSecret: lazar' \
-     -H 'X-Killbill-CreatedBy: admin' \
-     -H 'Content-Type: application/json' \
-     -d '{
-       "transactionType": "AUTHORIZE",
-       "amount": 5
-     }' \
-     http://127.0.0.1:8080/1.0/kb/accounts/2a55045a-ce1d-4344-942d-b825536328f9/payments
-```
